@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: stg_users
+    description: "Cleaned user accounts from raw source"
+    columns:
+      - name: user_id
+        description: "Unique user identifier"
+        tests:
+          - not_null
+          - unique
+      - name: signup_date
+        tests:
+          - not_null
+      - name: account_type
+        tests:
+          - not_null
+          - accepted_values:
+              values: ["basic", "premium", "gold"]
+
+  - name: stg_trades
+    description: "Cleaned trade records from raw source"
+    columns:
+      - name: trade_id
+        description: "Unique trade identifier"
+        tests:
+          - not_null
+          - unique
+      - name: user_id
+        tests:
+          - not_null
+      - name: trade_type
+        tests:
+          - accepted_values:
+              values: ["buy", "sell"]
+      - name: total_value
+        tests:
+          - not_null
+
+  - name: stg_instruments
+    description: "Financial instruments reference data"
+    columns:
+      - name: ticker
+        tests:
+          - not_null
+          - unique
+          

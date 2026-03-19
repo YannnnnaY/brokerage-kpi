@@ -33,6 +33,22 @@ Streamlit Dashboard (Plotly charts)
 
 ---
 
+## Data Model Design
+
+The data model follows a layered analytics engineering approach:
+
+- **Staging layer**: cleans raw trade and user data
+- **Mart layer**: defines business-facing tables
+
+Core tables include:
+- `fact_trades`: trade-level metrics including volume and revenue
+- `dim_users`: user attributes including acquisition channel
+- `fct_user_daily_metrics`: aggregated user activity for DAU and retention
+
+This structure enables scalable and consistent metric computation.
+
+---
+
 ## KPIs & Metrics
 
 | Metric | Description |
